@@ -62,6 +62,12 @@ build_metadata.AdditionalFiles.ManifestResourceName = NearByCities.Views.CityDet
 build_metadata.AdditionalFiles.TargetPath = Views/CityDetailsPage.xaml
 build_metadata.AdditionalFiles.RelativePath = Views/CityDetailsPage.xaml
 
+[/Users/kevinjimenez/RiderProjects/NearByCities/NearByCities/Views/MapPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = NearByCities.Views.MapPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Views/MapPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Views/MapPage.xaml
+
 [/Users/kevinjimenez/RiderProjects/NearByCities/NearByCities/Views/NearbyCitiesPage.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = NearByCities.Views.NearbyCitiesPage.xaml

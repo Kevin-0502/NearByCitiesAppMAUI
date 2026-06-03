@@ -1,111 +1,74 @@
-# NearByCities - .NET MAUI
+# NearByCities
 
-Aplicación móvil multiplataforma que muestra ciudades cercanas al usuario con información climática en tiempo real, utilizando la API de OpenWeatherMap.
+Aplicación móvil multiplataforma desarrollada con .NET MAUI que muestra ciudades cercanas al usuario con información climática en tiempo real y un mapa interactivo con marcadores.
 
-## Arquitectura
+## Requisitos previos
 
-**MVVM (Model-View-ViewModel)** con inyección de dependencias nativa de MAUI.
+- [.NET 9 SDK](https://dotnet.microsoft.com/download/dotnet/9.0)
+- [Visual Studio 2022](https://visualstudio.microsoft.com/) con workload "Desarrollo de aplicaciones .NET Multi-platform App UI" **o** [JetBrains Rider](https://www.jetbrains.com/rider/) con soporte MAUI
+- Para Android: Android SDK (API 21+)
+- Para iOS/macOS: Xcode 15+ (solo en macOS)
+- Una API Key gratuita de [OpenWeatherMap](https://openweathermap.org/api)
+- Una API Key de [Google Maps](https://console.cloud.google.com/) (solo necesaria para el mapa en Android)
 
+## Instalación
+
+### 1. Clonar el repositorio
+
+```bash
+git clone https://github.com/Kevin-0502/NearByCitiesAppMAUI.git
+cd NearByCities
 ```
-NearByCities/
-├── Constants/          # Configuración y constantes (API keys, URLs)
-├── Models/             # Entidades del dominio (City, Forecast, Weather, LocationData)
-│   └── Api/            # DTOs para deserialización de respuestas HTTP
-├── Services/           # Capa de datos (WeatherService, LocationService)
-├── ViewModels/         # Lógica de negocio (NearbyCitiesViewModel, CityDetailsViewModel)
-├── Views/              # Pantallas XAML (solo renderizado)
-└── Utils/              # Utilidades (cálculo de distancias Haversine)
-```
 
-### Principios aplicados
+### 2. Configurar API Keys
 
-- **Separation of Concerns**: Views sin lógica de negocio, ViewModels sin conocimiento de UI
-- **Dependency Injection**: Servicios registrados en `MauiProgram.cs`, inyectados vía constructor
-- **Interface Segregation**: `IWeatherService`, `ILocationService` para desacoplamiento y testabilidad
-- **CommunityToolkit.Mvvm**: Generación de código con `[ObservableProperty]` y `[RelayCommand]`
-
-## Tecnologías
-
-| Tecnología | Uso |
-|---|---|
-| .NET 9 + MAUI | Framework multiplataforma |
-| CommunityToolkit.Mvvm | MVVM source generators |
-| Shell Navigation | Navegación con paso de parámetros |
-| HttpClient | Consumo de API REST |
-| Microsoft.Maui.Essentials | Geolocalización y permisos |
-| OpenWeatherMap API | Datos meteorológicos |
-
-## Configuración del entorno
-
-### Requisitos
-
-- .NET 9 SDK
-- Visual Studio 2022 / Rider con workload MAUI
-- Xcode (para iOS/macOS) o Android SDK
-
-### Variables de entorno
-
-Editar `Constants/AppConstants.cs` y agregar tu API Key:
+Abrir `NearByCities/Constants/AppConstants.cs` y colocar tu API Key de OpenWeatherMap:
 
 ```csharp
 public const string OpenWeatherMapApiKey = "TU_API_KEY_AQUI";
 ```
 
-Obtener key gratuita en: https://openweathermap.org/api
+Para el mapa en Android, abrir `NearByCities/Platforms/Android/AndroidManifest.xml` y reemplazar:
 
-### APIs utilizadas
+```xml
+<meta-data android:name="com.google.android.geo.API_KEY" android:value="TU_GOOGLE_MAPS_API_KEY" />
+```
 
-- **Current Weather** (`/data/2.5/weather`): clima actual por coordenadas
-- **Find Nearby** (`/data/2.5/find`): ciudades cercanas por coordenadas
-- **5 Day Forecast** (`/data/2.5/forecast`): pronóstico cada 3 horas
-
-## Instalación y ejecución
+### 3. Restaurar paquetes
 
 ```bash
-# Clonar
-git clone https://github.com/Kevin-0502/NearByCitiesApp.git
-cd NearByCities
-
-# Restaurar paquetes
 dotnet restore
+```
 
-# Ejecutar en Android
+### 4. Ejecutar la aplicación
+
+```bash
+# Android (requiere emulador o dispositivo conectado)
 dotnet build -t:Run -f net9.0-android
 
-# Ejecutar en iOS
+# iOS (requiere macOS con Xcode)
 dotnet build -t:Run -f net9.0-ios
 
-# Ejecutar en macOS
+# macOS
 dotnet build -t:Run -f net9.0-maccatalyst
 ```
 
-## Funcionalidades
+O simplemente presionar Run/Debug desde Visual Studio o Rider seleccionando el target deseado.
 
-### Pantalla 1: Ciudades Cercanas
-- Ubicación actual del usuario con permisos
-- 5 ciudades cercanas con temperatura, condición, icono y distancia
-- Pull to refresh
-- Estados: loading, empty, error
+## Permisos requeridos
 
-### Pantalla 2: Detalle de Ciudad
-- Temperatura actual, máxima, mínima
-- Sensación térmica, humedad, velocidad del viento
-- Coordenadas geográficas
-- Icono oficial OpenWeatherMap
-- Pronóstico de 5 días
+La aplicación solicita los siguientes permisos al usuario:
 
-### Manejo de errores
-- Permisos de ubicación denegados
-- Sin conexión a internet
-- API timeout
-- API Key inválida
-- Ubicación no disponible
+- **Ubicación (GPS)**: Para detectar la posición actual y buscar ciudades cercanas
+- **Internet**: Para consumir la API de OpenWeatherMap y cargar íconos del clima
 
-## Decisiones técnicas
+Estos permisos ya están configurados en:
+- Android: `Platforms/Android/AndroidManifestPermissions.cs` y `AndroidManifest.xml`
+- iOS: `Platforms/iOS/Info.plist` (`NSLocationWhenInUseUsageDescription`)
 
-1. **MAUI en lugar de React Native**: Migración a ecosistema .NET para aprovechar tipado fuerte de C#, rendimiento nativo y tooling de Visual Studio/Rider.
-2. **CommunityToolkit.Mvvm**: Reduce boilerplate con source generators, manteniendo el patrón MVVM limpio.
-3. **Shell Navigation con IQueryAttributable**: Permite pasar objetos complejos entre páginas sin serialización.
-4. **Haversine para distancias**: Cálculo preciso de distancia geodésica entre coordenadas.
-5. **Endpoint `/data/2.5/find`**: Obtiene ciudades cercanas en una sola llamada HTTP en lugar de múltiples requests.
-6. **Interfaces para servicios**: Facilita testing unitario y desacoplamiento.
+## Solución de problemas
+
+- **"Failed to upload APK"**: Verificar que hay un emulador Android corriendo o un dispositivo conectado con depuración USB activada
+- **Mapa en blanco (Android)**: Falta la API Key de Google Maps en `AndroidManifest.xml`
+- **Error 401 de la API**: La API Key de OpenWeatherMap es inválida o no está activada (puede tardar unas horas después de crearla)
+- **"Permiso de ubicación denegado"**: Ir a ajustes del dispositivo y otorgar el permiso manualmente
