@@ -72,3 +72,5 @@ Estos permisos ya están configurados en:
 - **Mapa en blanco (Android)**: Falta la API Key de Google Maps en `AndroidManifest.xml`
 - **Error 401 de la API**: La API Key de OpenWeatherMap es inválida o no está activada (puede tardar unas horas después de crearla)
 - **"Permiso de ubicación denegado"**: Ir a ajustes del dispositivo y otorgar el permiso manualmente
+
+![alt text](<WhatsApp Image 2026-06-03 at 14.55.21.jpeg>)![alt text](<WhatsApp Image 2026-06-03 at 14.54.05.jpeg>) ![alt text](<WhatsApp Image 2026-06-03 at 14.54.05 (1).jpeg>)
