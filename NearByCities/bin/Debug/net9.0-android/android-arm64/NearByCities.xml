@@ -1,0 +1,162 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>NearByCities</name>
+    </assembly>
+    <members>
+        <member name="M:NearByCities.Utils.GeoUtils.CalculateDistanceKm(System.Double,System.Double,System.Double,System.Double)">
+            <summary>
+            Calcula la distancia entre dos coordenadas usando la fórmula de Haversine.
+            </summary>
+        </member>
+        <member name="T:NearByCities.ViewModels.CityDetailsViewModel">
+            <inheritdoc/>
+            <inheritdoc/>
+        </member>
+        <member name="P:NearByCities.ViewModels.CityDetailsViewModel.City">
+            <inheritdoc cref="F:NearByCities.ViewModels.CityDetailsViewModel._city"/>
+        </member>
+        <member name="P:NearByCities.ViewModels.CityDetailsViewModel.IsLoading">
+            <inheritdoc cref="F:NearByCities.ViewModels.CityDetailsViewModel._isLoading"/>
+        </member>
+        <member name="P:NearByCities.ViewModels.CityDetailsViewModel.HasError">
+            <inheritdoc cref="F:NearByCities.ViewModels.CityDetailsViewModel._hasError"/>
+        </member>
+        <member name="P:NearByCities.ViewModels.CityDetailsViewModel.ErrorMessage">
+            <inheritdoc cref="F:NearByCities.ViewModels.CityDetailsViewModel._errorMessage"/>
+        </member>
+        <member name="F:NearByCities.ViewModels.CityDetailsViewModel.loadForecastCommand">
+            <summary>The backing field for <see cref="P:NearByCities.ViewModels.CityDetailsViewModel.LoadForecastCommand"/>.</summary>
+        </member>
+        <member name="P:NearByCities.ViewModels.CityDetailsViewModel.LoadForecastCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand"/> instance wrapping <see cref="M:NearByCities.ViewModels.CityDetailsViewModel.LoadForecastAsync"/>.</summary>
+        </member>
+        <member name="T:NearByCities.ViewModels.MapViewModel">
+            <inheritdoc/>
+            <inheritdoc/>
+        </member>
+        <member name="E:NearByCities.ViewModels.MapViewModel.CitiesUpdated">
+            <summary>
+            Se dispara cuando las ciudades se recargan (manual o automáticamente).
+            La vista se suscribe para actualizar los pins.
+            </summary>
+        </member>
+        <member name="P:NearByCities.ViewModels.MapViewModel.IsLoading">
+            <inheritdoc cref="F:NearByCities.ViewModels.MapViewModel._isLoading"/>
+        </member>
+        <member name="P:NearByCities.ViewModels.MapViewModel.HasError">
+            <inheritdoc cref="F:NearByCities.ViewModels.MapViewModel._hasError"/>
+        </member>
+        <member name="P:NearByCities.ViewModels.MapViewModel.ErrorMessage">
+            <inheritdoc cref="F:NearByCities.ViewModels.MapViewModel._errorMessage"/>
+        </member>
+        <member name="P:NearByCities.ViewModels.MapViewModel.UserLocation">
+            <inheritdoc cref="F:NearByCities.ViewModels.MapViewModel._userLocation"/>
+        </member>
+        <member name="F:NearByCities.ViewModels.MapViewModel.loadCitiesCommand">
+            <summary>The backing field for <see cref="P:NearByCities.ViewModels.MapViewModel.LoadCitiesCommand"/>.</summary>
+        </member>
+        <member name="P:NearByCities.ViewModels.MapViewModel.LoadCitiesCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand"/> instance wrapping <see cref="M:NearByCities.ViewModels.MapViewModel.LoadCitiesAsync"/>.</summary>
+        </member>
+        <member name="T:NearByCities.ViewModels.NearbyCitiesViewModel">
+            <inheritdoc/>
+            <inheritdoc/>
+            <inheritdoc/>
+            <inheritdoc/>
+        </member>
+        <member name="P:NearByCities.ViewModels.NearbyCitiesViewModel.IsLoading">
+            <inheritdoc cref="F:NearByCities.ViewModels.NearbyCitiesViewModel._isLoading"/>
+        </member>
+        <member name="P:NearByCities.ViewModels.NearbyCitiesViewModel.IsRefreshing">
+            <inheritdoc cref="F:NearByCities.ViewModels.NearbyCitiesViewModel._isRefreshing"/>
+        </member>
+        <member name="P:NearByCities.ViewModels.NearbyCitiesViewModel.IsEmpty">
+            <inheritdoc cref="F:NearByCities.ViewModels.NearbyCitiesViewModel._isEmpty"/>
+        </member>
+        <member name="P:NearByCities.ViewModels.NearbyCitiesViewModel.HasError">
+            <inheritdoc cref="F:NearByCities.ViewModels.NearbyCitiesViewModel._hasError"/>
+        </member>
+        <member name="P:NearByCities.ViewModels.NearbyCitiesViewModel.ErrorMessage">
+            <inheritdoc cref="F:NearByCities.ViewModels.NearbyCitiesViewModel._errorMessage"/>
+        </member>
+        <member name="F:NearByCities.ViewModels.NearbyCitiesViewModel.loadCitiesCommand">
+            <summary>The backing field for <see cref="P:NearByCities.ViewModels.NearbyCitiesViewModel.LoadCitiesCommand"/>.</summary>
+        </member>
+        <member name="P:NearByCities.ViewModels.NearbyCitiesViewModel.LoadCitiesCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand"/> instance wrapping <see cref="M:NearByCities.ViewModels.NearbyCitiesViewModel.LoadCitiesAsync"/>.</summary>
+        </member>
+        <member name="F:NearByCities.ViewModels.NearbyCitiesViewModel.refreshCommand">
+            <summary>The backing field for <see cref="P:NearByCities.ViewModels.NearbyCitiesViewModel.RefreshCommand"/>.</summary>
+        </member>
+        <member name="P:NearByCities.ViewModels.NearbyCitiesViewModel.RefreshCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand"/> instance wrapping <see cref="M:NearByCities.ViewModels.NearbyCitiesViewModel.RefreshAsync"/>.</summary>
+        </member>
+        <member name="F:NearByCities.ViewModels.NearbyCitiesViewModel.navigateToCityCommand">
+            <summary>The backing field for <see cref="P:NearByCities.ViewModels.NearbyCitiesViewModel.NavigateToCityCommand"/>.</summary>
+        </member>
+        <member name="P:NearByCities.ViewModels.NearbyCitiesViewModel.NavigateToCityCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand`1"/> instance wrapping <see cref="M:NearByCities.ViewModels.NearbyCitiesViewModel.NavigateToCityAsync(NearByCities.Models.City)"/>.</summary>
+        </member>
+        <member name="T:NearByCities.Resource">
+            <summary>
+            Android Resource Designer class.
+            Exposes the Android Resource designer assembly into the project Namespace.
+            </summary>
+        </member>
+        <member name="T:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs">
+            <summary>
+            A helper type providing cached, reusable <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instances
+            for all properties generated with <see cref="T:CommunityToolkit.Mvvm.ComponentModel.ObservablePropertyAttribute"/>.
+            </summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.City">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "City" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.IsLoading">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "IsLoading" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.HasError">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "HasError" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.ErrorMessage">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "ErrorMessage" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.UserLocation">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "UserLocation" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.IsRefreshing">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "IsRefreshing" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.IsEmpty">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "IsEmpty" generated properties.</summary>
+        </member>
+        <member name="T:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs">
+            <summary>
+            A helper type providing cached, reusable <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instances
+            for all properties generated with <see cref="T:CommunityToolkit.Mvvm.ComponentModel.ObservablePropertyAttribute"/>.
+            </summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.City">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "City" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.IsLoading">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "IsLoading" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.HasError">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "HasError" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.ErrorMessage">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "ErrorMessage" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.UserLocation">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "UserLocation" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.IsRefreshing">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "IsRefreshing" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.IsEmpty">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "IsEmpty" generated properties.</summary>
+        </member>
+    </members>
+</doc>

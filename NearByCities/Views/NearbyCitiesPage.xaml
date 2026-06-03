@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:NearByCities.ViewModels"
+             xmlns:models="clr-namespace:NearByCities.Models"
+             x:Class="NearByCities.Views.NearbyCitiesPage"
+             x:DataType="vm:NearbyCitiesViewModel"
+             Title="Ciudades Cercanas"
+             BackgroundColor="{StaticResource PageBackgroundColor}">
+
+    <RefreshView Command="{Binding RefreshCommand}"
+                 IsRefreshing="{Binding IsRefreshing}">
+        <Grid>
+            <!-- Loading State -->
+            <VerticalStackLayout IsVisible="{Binding IsLoading}"
+                                 VerticalOptions="Center"
+                                 HorizontalOptions="Center"
+                                 Spacing="16">
+                <ActivityIndicator IsRunning="{Binding IsLoading}"
+                                   Color="{StaticResource Primary}"
+                                   HeightRequest="48"
+                                   WidthRequest="48"/>
+                <Label Text="Buscando ciudades cercanas..."
+                       HorizontalOptions="Center"
+                       FontSize="16"
+                       TextColor="{StaticResource Gray500}"/>
+            </VerticalStackLayout>
+
+            <!-- Error State -->
+            <VerticalStackLayout IsVisible="{Binding HasError}"
+                                 VerticalOptions="Center"
+                                 HorizontalOptions="Center"
+                                 Spacing="16"
+                                 Padding="32">
+                <Label Text="⚠️"
+                       FontSize="48"
+                       HorizontalOptions="Center"/>
+                <Label Text="{Binding ErrorMessage}"
+                       HorizontalOptions="Center"
+                       HorizontalTextAlignment="Center"
+                       FontSize="16"
+                       TextColor="{StaticResource Gray600}"/>
+                <Button Text="Reintentar"
+                        Command="{Binding LoadCitiesCommand}"
+                        HorizontalOptions="Center"
+                        BackgroundColor="{StaticResource Primary}"
+                        TextColor="White"
+                        CornerRadius="8"
+                        Padding="24,12"/>
+            </VerticalStackLayout>
+
+            <!-- Empty State -->
+            <VerticalStackLayout IsVisible="{Binding IsEmpty}"
+                                 VerticalOptions="Center"
+                                 HorizontalOptions="Center"
+                                 Spacing="16">
+                <Label Text="🏙️"
+                       FontSize="48"
+                       HorizontalOptions="Center"/>
+                <Label Text="No se encontraron ciudades cercanas."
+                       HorizontalOptions="Center"
+                       FontSize="16"
+                       TextColor="{StaticResource Gray500}"/>
+            </VerticalStackLayout>
+
+            <!-- Cities List -->
+            <CollectionView ItemsSource="{Binding Cities}"
+                            SelectionMode="None">
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Vertical" ItemSpacing="12"/>
+                </CollectionView.ItemsLayout>
+                <CollectionView.Header>
+                    <BoxView HeightRequest="12"/>
+                </CollectionView.Header>
+                <CollectionView.Footer>
+                    <BoxView HeightRequest="12"/>
+                </CollectionView.Footer>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="models:City">
+                        <Frame Margin="16,0"
+                               Padding="16"
+                               CornerRadius="12"
+                               BorderColor="Transparent"
+                               BackgroundColor="{AppThemeBinding Light=White, Dark=#1C1C1E}"
+                               HasShadow="True">
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer
+                                    Command="{Binding Source={RelativeSource AncestorType={x:Type vm:NearbyCitiesViewModel}}, Path=NavigateToCityCommand}"
+                                    CommandParameter="{Binding .}"/>
+                            </Frame.GestureRecognizers>
+                            <Grid ColumnDefinitions="56,*,Auto" ColumnSpacing="12">
+                                <!-- Weather Icon -->
+                                <Image Source="{Binding IconUrl}"
+                                       WidthRequest="56"
+                                       HeightRequest="56"
+                                       Aspect="AspectFit"
+                                       Grid.Column="0"/>
+
+                                <!-- City Info -->
+                                <VerticalStackLayout Grid.Column="1"
+                                                     VerticalOptions="Center"
+                                                     Spacing="4">
+                                    <Label Text="{Binding Name}"
+                                           FontSize="18"
+                                           FontAttributes="Bold"/>
+                                    <Label Text="{Binding Condition}"
+                                           FontSize="14"
+                                           TextColor="{StaticResource Gray500}"
+                                           LineBreakMode="TailTruncation"/>
+                                    <Label Text="{Binding DistanceDisplay}"
+                                           FontSize="12"
+                                           TextColor="{StaticResource Gray400}"/>
+                                </VerticalStackLayout>
+
+                                <!-- Temperature -->
+                                <Label Grid.Column="2"
+                                       Text="{Binding TemperatureDisplay}"
+                                       FontSize="28"
+                                       FontAttributes="Bold"
+                                       VerticalOptions="Center"
+                                       TextColor="{StaticResource Primary}"/>
+                            </Grid>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </Grid>
+    </RefreshView>
+
+</ContentPage>

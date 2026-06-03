@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:NearByCities.ViewModels"
+             xmlns:models="clr-namespace:NearByCities.Models"
+             x:Class="NearByCities.Views.CityDetailsPage"
+             x:DataType="vm:CityDetailsViewModel"
+             Title="{Binding City.Name}"
+             BackgroundColor="{StaticResource PageBackgroundColor}">
+
+    <ScrollView>
+        <VerticalStackLayout Spacing="16" Padding="16">
+
+            <!-- Loading -->
+            <ActivityIndicator IsRunning="{Binding IsLoading}"
+                               IsVisible="{Binding IsLoading}"
+                               Color="{StaticResource Primary}"
+                               HeightRequest="32"/>
+
+            <!-- Error -->
+            <Frame IsVisible="{Binding HasError}"
+                   BackgroundColor="#FFF3CD"
+                   BorderColor="#FFC107"
+                   CornerRadius="8"
+                   Padding="12">
+                <Label Text="{Binding ErrorMessage}"
+                       TextColor="#856404"/>
+            </Frame>
+
+            <!-- Header Card -->
+            <Frame CornerRadius="16"
+                   Padding="20"
+                   BorderColor="Transparent"
+                   BackgroundColor="{AppThemeBinding Light=White, Dark=#1C1C1E}"
+                   HasShadow="True">
+                <VerticalStackLayout Spacing="12" HorizontalOptions="Center">
+                    <Image Source="{Binding City.IconUrl}"
+                           WidthRequest="100"
+                           HeightRequest="100"
+                           Aspect="AspectFit"
+                           HorizontalOptions="Center"/>
+                    <Label Text="{Binding City.Name}"
+                           FontSize="28"
+                           FontAttributes="Bold"
+                           HorizontalOptions="Center"/>
+                    <Label Text="{Binding CoordinatesDisplay}"
+                           FontSize="13"
+                           TextColor="{StaticResource Gray400}"
+                           HorizontalOptions="Center"/>
+                    <Label Text="{Binding City.TemperatureDisplay}"
+                           FontSize="48"
+                           FontAttributes="Bold"
+                           TextColor="{StaticResource Primary}"
+                           HorizontalOptions="Center"/>
+                    <Label Text="{Binding City.Condition}"
+                           FontSize="16"
+                           TextColor="{StaticResource Gray500}"
+                           HorizontalOptions="Center"/>
+                </VerticalStackLayout>
+            </Frame>
+
+            <!-- Details Grid -->
+            <Frame CornerRadius="16"
+                   Padding="16"
+                   BorderColor="Transparent"
+                   BackgroundColor="{AppThemeBinding Light=White, Dark=#1C1C1E}"
+                   HasShadow="True">
+                <Grid ColumnDefinitions="*,*"
+                      RowDefinitions="Auto,Auto,Auto"
+                      RowSpacing="16"
+                      ColumnSpacing="16">
+
+                    <!-- Feels Like -->
+                    <VerticalStackLayout Grid.Row="0" Grid.Column="0" Spacing="4">
+                        <Label Text="Sensación" FontSize="12" TextColor="{StaticResource Gray400}"/>
+                        <Label Text="{Binding City.FeelsLike, StringFormat='{0:F0}°C'}"
+                               FontSize="20" FontAttributes="Bold"/>
+                    </VerticalStackLayout>
+
+                    <!-- Humidity -->
+                    <VerticalStackLayout Grid.Row="0" Grid.Column="1" Spacing="4">
+                        <Label Text="Humedad" FontSize="12" TextColor="{StaticResource Gray400}"/>
+                        <Label Text="{Binding City.Humidity, StringFormat='{0}%'}"
+                               FontSize="20" FontAttributes="Bold"/>
+                    </VerticalStackLayout>
+
+                    <!-- Wind -->
+                    <VerticalStackLayout Grid.Row="1" Grid.Column="0" Spacing="4">
+                        <Label Text="Viento" FontSize="12" TextColor="{StaticResource Gray400}"/>
+                        <Label Text="{Binding City.WindSpeed, StringFormat='{0:F1} m/s'}"
+                               FontSize="20" FontAttributes="Bold"/>
+                    </VerticalStackLayout>
+
+                    <!-- Temp Min -->
+                    <VerticalStackLayout Grid.Row="1" Grid.Column="1" Spacing="4">
+                        <Label Text="Mínima" FontSize="12" TextColor="{StaticResource Gray400}"/>
+                        <Label Text="{Binding City.TempMin, StringFormat='{0:F0}°C'}"
+                               FontSize="20" FontAttributes="Bold"/>
+                    </VerticalStackLayout>
+
+                    <!-- Temp Max -->
+                    <VerticalStackLayout Grid.Row="2" Grid.Column="0" Spacing="4">
+                        <Label Text="Máxima" FontSize="12" TextColor="{StaticResource Gray400}"/>
+                        <Label Text="{Binding City.TempMax, StringFormat='{0:F0}°C'}"
+                               FontSize="20" FontAttributes="Bold"/>
+                    </VerticalStackLayout>
+
+                </Grid>
+            </Frame>
+
+            <!-- Forecast Section -->
+            <Label Text="Pronóstico 5 días"
+                   FontSize="20"
+                   FontAttributes="Bold"
+                   Margin="0,8,0,0"/>
+
+            <CollectionView ItemsSource="{Binding Forecasts}"
+                            HeightRequest="140">
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Horizontal" ItemSpacing="12"/>
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="models:Forecast">
+                        <Frame WidthRequest="100"
+                               Padding="12"
+                               CornerRadius="12"
+                               BorderColor="Transparent"
+                               BackgroundColor="{AppThemeBinding Light=White, Dark=#1C1C1E}"
+                               HasShadow="True">
+                            <VerticalStackLayout Spacing="6" HorizontalOptions="Center">
+                                <Label Text="{Binding DayName}"
+                                       FontSize="14"
+                                       FontAttributes="Bold"
+                                       HorizontalOptions="Center"/>
+                                <Image Source="{Binding IconUrl}"
+                                       WidthRequest="40"
+                                       HeightRequest="40"
+                                       Aspect="AspectFit"
+                                       HorizontalOptions="Center"/>
+                                <Label Text="{Binding TempDisplay}"
+                                       FontSize="12"
+                                       HorizontalOptions="Center"/>
+                            </VerticalStackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

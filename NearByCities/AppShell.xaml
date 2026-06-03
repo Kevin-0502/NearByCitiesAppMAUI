@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="NearByCities.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:views="clr-namespace:NearByCities.Views"
+    Title="NearByCities">
+
+    <TabBar>
+        <ShellContent
+            Title="Ciudades"
+            Icon="city_icon"
+            ContentTemplate="{DataTemplate views:NearbyCitiesPage}"
+            Route="NearbyCities" />
+
+        <ShellContent
+            Title="Mapa"
+            Icon="map_icon"
+            ContentTemplate="{DataTemplate views:MapPage}"
+            Route="Map" />
+    </TabBar>
+
+</Shell>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:maps="clr-namespace:Microsoft.Maui.Controls.Maps;assembly=Microsoft.Maui.Controls.Maps"
+             xmlns:sensors="clr-namespace:Microsoft.Maui.Devices.Sensors;assembly=Microsoft.Maui.Essentials"
+             xmlns:vm="clr-namespace:NearByCities.ViewModels"
+             x:Class="NearByCities.Views.MapPage"
+             x:DataType="vm:MapViewModel"
+             Title="Mapa">
+
+    <Grid>
+        <!-- Map -->
+        <maps:Map x:Name="CityMap"
+                  IsShowingUser="True"
+                  MapType="Street"/>
+
+        <!-- Loading overlay -->
+        <VerticalStackLayout IsVisible="{Binding IsLoading}"
+                             VerticalOptions="Center"
+                             HorizontalOptions="Center"
+                             BackgroundColor="#80000000"
+                             Padding="24"
+                             Spacing="12">
+            <ActivityIndicator IsRunning="{Binding IsLoading}" Color="White"/>
+            <Label Text="Cargando ciudades..." TextColor="White" FontSize="14"/>
+        </VerticalStackLayout>
+
+        <!-- Buttons stack -->
+        <VerticalStackLayout VerticalOptions="End"
+                             HorizontalOptions="End"
+                             Margin="0,0,16,80"
+                             Spacing="12">
+            <!-- Reload cities button -->
+            <Button ImageSource="ic_refresh.png"
+                    Clicked="OnReloadClicked" 
+                    VerticalOptions="End" 
+                    HorizontalOptions="End" 
+                    Margin="0,0,0,0" 
+                    WidthRequest="50" 
+                    HeightRequest="50" 
+                    CornerRadius="25" 
+                    BackgroundColor="{AppThemeBinding Light=White, Dark=#2C2C2E}"
+                    Padding="13"/>
+
+            <!-- Center location button -->
+            <Button ImageSource="ic_center_location.png"
+                    Clicked="OnCenterLocationClicked" 
+                    VerticalOptions="End" 
+                    HorizontalOptions="End" 
+                    Margin="0,0,0,25" 
+                    WidthRequest="50" 
+                    HeightRequest="50" 
+                    CornerRadius="25" 
+                    BackgroundColor="{AppThemeBinding Light=White, Dark=#2C2C2E}"
+                    Padding="12"/>
+
+        </VerticalStackLayout>
+
+        <!-- Error overlay -->
+        <Frame IsVisible="{Binding HasError}"
+               VerticalOptions="End"
+               Margin="16,0,16,24"
+               Padding="16"
+               CornerRadius="12"
+               BackgroundColor="#FFF3CD"
+               BorderColor="#FFC107">
+            <Label Text="{Binding ErrorMessage}" TextColor="#856404"/>
+        </Frame>
+    </Grid>
+
+</ContentPage>
