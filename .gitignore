@@ -1,0 +1,53 @@
+## .NET / MAUI
+bin/
+obj/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+## Build results
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+build/
+bld/
+
+## NuGet
+*.nupkg
+**/packages/*
+*.nuget.props
+*.nuget.targets
+project.lock.json
+
+## Rider
+.idea/
+*.sln.iml
+
+## Visual Studio
+.vs/
+*.rsuser
+*.csproj.user
+
+## macOS
+.DS_Store
+*.pbxuser
+*.xcworkspace
+
+## Android
+*.apk
+*.aab
+*.dex
+*.class
+
+## iOS
+*.ipa
+*.dSYM.zip
+*.dSYM
+
+## User secrets
+secrets.json
+
+## Mobile Developer doc
+Mobile_Developer.docx
